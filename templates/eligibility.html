@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Check Your Government Job Eligibility – AI Assessment{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="text-center max-w-700 mx-auto mb-5">
+    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2 fw-semibold">
+      AI Qualification Auditor
+    </span>
+    <h1 class="fw-bold">Discover Government Careers You Qualify For</h1>
+    <p class="text-muted">
+      Enter your educational background and preferences. Our AI will analyze your eligibility across UPSC, SSC, Railways, State PSC, Defence, and Technical PSUs.
+    </p>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <!-- Form Card -->
+    <div class="col-lg-6">
+      <div class="card card-custom p-4 p-md-5 shadow-lg">
+        <h4 class="fw-bold text-navy mb-4"><i class="bi bi-person-lines-fill text-primary me-2"></i>Candidate Profile Form</h4>
+        
+        <form id="eligibilityForm">
+          <!-- 1. Highest Qualification -->
+          <div class="mb-3">
+            <label for="qualification" class="form-label">Highest Qualification <span class="text-danger">*</span></label>
+            <select class="form-select" id="qualification" name="qualification" required>
+              <option value="" disabled {% if not profile or not profile.qualification %}selected{% endif %}>Select Qualification</option>
+              <option value="10th Pass (Matriculation)" {% if profile and profile.qualification == '10th Pass (Matriculation)' %}selected{% endif %}>10th Pass (Matriculation)</option>
+              <option value="12th Pass (Higher Secondary)" {% if profile and profile.qualification == '12th Pass (Higher Secondary)' %}selected{% endif %}>12th Pass (Higher Secondary - Any Stream)</option>
+              <option value="12th Pass (Science PCM)" {% if profile and profile.qualification == '12th Pass (Science PCM)' %}selected{% endif %}>12th Pass (Science - Physics, Chemistry, Math)</option>
+              <option value="ITI Certificate" {% if profile and profile.qualification == 'ITI Certificate' %}selected{% endif %}>ITI Trade Certificate</option>
+              <option value="Diploma / Polytechnic" {% if profile and profile.qualification == 'Diploma / Polytechnic' %}selected{% endif %}>Diploma / Polytechnic (3 Years)</option>
+              <option value="B.Tech / B.E. (Engineering)" {% if profile and profile.qualification == 'B.Tech / B.E. (Engineering)' %}selected{% endif %}>B.Tech / B.E. (4-Year Engineering)</option>
+              <option value="General Bachelor's Degree (BA/BSc/BCom)" {% if profile and profile.qualification == "General Bachelor's Degree (BA/BSc/BCom)" %}selected{% endif %}>General Bachelor's Degree (BA / BSc / BCom / BBA)</option>
+              <option value="Post Graduation / Master's" {% if profile and profile.qualification == "Post Graduation / Master's" %}selected{% endif %}>Post Graduation / Master's Degree</option>
+            </select>
+          </div>
+
+          <!-- 2. Study Status -->
+          <div class="mb-3">
+            <label for="study_status" class="form-label">Current Study Status <span class="text-danger">*</span></label>
+            <select class="form-select" id="study_status" name="study_status" required>
+              <option value="Completed / Degree Awarded" {% if profile and profile.study_status == 'Completed / Degree Awarded' %}selected{% endif %}>Completed / Degree Awarded</option>
+              <option value="Currently in Final Year" {% if profile and profile.study_status == 'Currently in Final Year' %}selected{% endif %}>Currently in Final Year (Appearing)</option>
+              <option value="Currently in 1st/2nd/3rd Year" {% if profile and profile.study_status == 'Currently in 1st/2nd/3rd Year' %}selected{% endif %}>Currently in 1st/2nd/3rd Year (Early Preparation)</option>
+            </select>
+          </div>
+
+          <!-- 3. Engineering Branch (Dynamic) -->
+          <div class="mb-3" id="branchContainer" style="display: {% if profile and ('B.Tech' in profile.qualification or 'Diploma' in profile.qualification) %}block{% else %}none{% endif %};">
+            <label for="branch" class="form-label">Engineering Branch / Trade</label>
+            <select class="form-select" id="branch" name="branch">
+              <option value="Computer Science & Engineering / IT" {% if profile and 'Computer Science' in profile.branch %}selected{% endif %}>Computer Science & Engineering / IT</option>
+              <option value="Mechanical Engineering" {% if profile and 'Mechanical' in profile.branch %}selected{% endif %}>Mechanical Engineering</option>
+              <option value="Civil Engineering" {% if profile and 'Civil' in profile.branch %}selected{% endif %}>Civil Engineering</option>
+              <option value="Electrical Engineering" {% if profile and 'Electrical' in profile.branch %}selected{% endif %}>Electrical Engineering</option>
+              <option value="Electronics & Communication (ECE)" {% if profile and 'Electronics' in profile.branch %}selected{% endif %}>Electronics & Communication (ECE)</option>
+              <option value="Other / Non-Engineering" {% if profile and profile.branch == 'Other / Non-Engineering' %}selected{% endif %}>Other Branch</option>
+            </select>
+          </div>
+
+          <!-- 4. Age and State -->
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <label for="age" class="form-label">Age (in years) <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="age" name="age" value="{{ profile.age if (profile and profile.age > 0) else 21 }}" min="16" max="45" required>
+            </div>
+            <div class="col-sm-6">
+              <label for="state" class="form-label">Domicile State <span class="text-danger">*</span></label>
+              <select class="form-select" id="state" name="state" required>
+                <option value="All India" {% if not profile or not profile.state or profile.state == 'All India' %}selected{% endif %}>Open to All India</option>
+                <option value="Maharashtra" {% if profile and profile.state == 'Maharashtra' %}selected{% endif %}>Maharashtra</option>
+                <option value="Delhi NCR" {% if profile and profile.state == 'Delhi NCR' %}selected{% endif %}>Delhi NCR</option>
+                <option value="Uttar Pradesh" {% if profile and profile.state == 'Uttar Pradesh' %}selected{% endif %}>Uttar Pradesh</option>
+                <option value="Bihar" {% if profile and profile.state == 'Bihar' %}selected{% endif %}>Bihar</option>
+                <option value="Karnataka" {% if profile and profile.state == 'Karnataka' %}selected{% endif %}>Karnataka</option>
+                <option value="Tamil Nadu" {% if profile and profile.state == 'Tamil Nadu' %}selected{% endif %}>Tamil Nadu</option>
+                <option value="Rajasthan" {% if profile and profile.state == 'Rajasthan' %}selected{% endif %}>Rajasthan</option>
+                <option value="Madhya Pradesh" {% if profile and profile.state == 'Madhya Pradesh' %}selected{% endif %}>Madhya Pradesh</option>
+                <option value="West Bengal" {% if profile and profile.state == 'West Bengal' %}selected{% endif %}>West Bengal</option>
+                <option value="Other State" {% if profile and profile.state == 'Other State' %}selected{% endif %}>Other State</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 5. Preferred Department -->
+          <div class="mb-3">
+            <label for="department" class="form-label">Preferred Department / Field</label>
+            <select class="form-select" id="department" name="department">
+              <option value="Any Government Sector">Open to Any High-Potential Sector</option>
+              <option value="Central Administrative & Ministries (SSC, UPSC)">Central Administrative & Ministries (SSC, UPSC)</option>
+              <option value="Public Sector Banking & Finance (IBPS, SBI, RBI)">Public Sector Banking & Finance (IBPS, SBI, RBI)</option>
+              <option value="Technical PSUs & R&D (ISRO, DRDO, NIC, IOCL)">Technical PSUs & R&D (ISRO, DRDO, NIC, IOCL)</option>
+              <option value="Indian Railways (RRB)">Indian Railways (RRB)</option>
+              <option value="Defence Forces (Army, Navy, Air Force)">Defence Forces (Army, Navy, Air Force)</option>
+              <option value="Police & Paramilitary (CPO, CAPF, State Police)">Police & Paramilitary (CPO, CAPF, State Police)</option>
+              <option value="State Civil Administration (State PSC)">State Civil Administration (State PSC)</option>
+              <option value="Teaching & Education (TET, UGC NET)">Teaching & Education (TET, UGC NET)</option>
+            </select>
+          </div>
+
+          <!-- 6. Career Preference -->
+          <div class="mb-4">
+            <label for="career_preference" class="form-label">Career Preference</label>
+            <select class="form-select" id="career_preference" name="career_preference">
+              <option value="Both Technical and Non-Technical">Both Technical and Non-Technical Opportunities</option>
+              <option value="Purely Technical / Engineering Roles">Purely Technical / Engineering Roles</option>
+              <option value="Non-Technical / Civil Administrative Roles">Non-Technical / Civil Administrative Roles</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary-custom w-100 py-3" id="btnCheckEligibility">
+            <i class="bi bi-compass me-2"></i> Analyze My Eligibility
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Results Display Column -->
+    <div class="col-lg-6">
+      <div class="card card-custom p-4 p-md-5 h-100 shadow-lg" id="eligibilityResultCard" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+          <h5 class="fw-bold mb-0 text-navy"><i class="bi bi-file-earmark-check text-success me-2"></i>Assessment Report</h5>
+          <button type="button" class="btn btn-sm btn-outline-primary" id="btnSaveEligibility" style="display: none;">
+            <i class="bi bi-bookmark-plus me-1"></i> Save Recommendation
+          </button>
+        </div>
+
+        <div id="eligibilityResultContent">
+          <!-- Dynamic Content rendered by eligibility.js -->
+        </div>
+
+        <div class="mt-4 pt-3 border-top small text-muted">
+          <i class="bi bi-shield-exclamation text-warning me-1"></i>
+          <strong>Preliminary Guidance Disclaimer:</strong> This evaluation is provided as informational guidance. Relaxations for OBC/SC/ST/EWS and cut-off dates require verification with the latest official notification on the recruiting body's website.
+        </div>
+      </div>
+
+      <!-- Placeholder card before user submits -->
+      <div class="card card-custom p-5 text-center h-100 shadow-sm d-flex flex-column justify-content-center" id="eligibilityPlaceholder">
+        <div class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width: 72px; height: 72px; font-size: 2rem;">
+          <i class="bi bi-mortarboard-fill"></i>
+        </div>
+        <h4 class="fw-bold text-navy mb-2">Instant Eligibility Analysis</h4>
+        <p class="text-muted small max-w-400 mx-auto mb-4">
+          Fill out the form on the left with your education details to see a personalized list of government exams you can take.
+        </p>
+        <div class="p-3 bg-light rounded text-start small text-muted">
+          <i class="bi bi-check2-circle text-success me-1"></i> Analyzes age criteria & relaxations<br>
+          <i class="bi bi-check2-circle text-success me-1"></i> Recommends technical vs general exams<br>
+          <i class="bi bi-check2-circle text-success me-1"></i> Breaks down preliminary syllabus
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/eligibility.js') }}"></script>
+<script>
+  // Hide placeholder when result appears
+  document.getElementById('eligibilityForm').addEventListener('submit', () => {
+    const placeholder = document.getElementById('eligibilityPlaceholder');
+    if (placeholder) placeholder.style.display = 'none';
+  });
+</script>
+{% endblock %}

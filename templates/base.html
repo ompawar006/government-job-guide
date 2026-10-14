@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Government Job Guide – AI Career Assistant{% endblock %}</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <i class="bi bi-shield-check text-info fs-4"></i>
+        <span>GovtJob<span class="text-info">Guide</span></span>
+        <span class="brand-badge">AI Assistant</span>
+      </a>
+      
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{{ url_for('index') }}">
+              <i class="bi bi-house me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/jobs' %}active{% endif %}" href="{{ url_for('jobs') }}">
+              <i class="bi bi-briefcase me-1"></i> Job Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/eligibility' %}active{% endif %}" href="{{ url_for('eligibility') }}">
+              <i class="bi bi-compass me-1"></i> Check Eligibility
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/chat' %}active{% endif %}" href="{{ url_for('chat') }}">
+              <i class="bi bi-chat-dots me-1"></i> AI Chatbot
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/preparation' %}active{% endif %}" href="{{ url_for('preparation') }}">
+              <i class="bi bi-journal-bookmark me-1"></i> Preparation Hub
+            </a>
+          </li>
+        </ul>
+        
+        <div class="d-flex align-items-center gap-2">
+          {% if current_user %}
+            <a href="{{ url_for('dashboard') }}" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">
+              <i class="bi bi-speedometer2 me-1"></i> Dashboard
+            </a>
+            <a href="{{ url_for('saved') }}" class="nav-link {% if request.path == '/saved' %}active{% endif %}">
+              <i class="bi bi-bookmark-star me-1"></i> Saved
+            </a>
+            <div class="dropdown">
+              <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i>
+                <span class="d-none d-sm-inline">{{ current_user.name.split()[0] }}</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userMenuBtn">
+                <li><h6 class="dropdown-header">{{ current_user.email }}</h6></li>
+                <li><a class="dropdown-item" href="{{ url_for('profile') }}"><i class="bi bi-sliders me-2"></i> Profile & Settings</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('saved') }}"><i class="bi bi-bookmarks me-2"></i> Saved Guidance</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+              </ul>
+            </div>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="nav-link">Sign In</a>
+            <a href="{{ url_for('register') }}" class="btn btn-primary-custom btn-sm">Get Started Free</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Flash Messages Banner -->
+  <div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-{% if category == 'success' %}check-circle{% elif category == 'danger' or category == 'error' %}exclamation-octagon{% elif category == 'warning' %}exclamation-triangle{% else %}info-circle{% endif %} me-2"></i>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Body Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer-custom mt-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-shield-check text-info fs-3"></i>
+            <span class="fs-4 fw-bold text-white">GovtJob<span class="text-info">Guide</span></span>
+          </div>
+          <p class="text-muted small mb-3">
+            India's dedicated AI-powered government career advisor. Helping students, diploma holders, graduates, and engineering candidates find eligible civil, technical, defense, and banking opportunities.
+          </p>
+          <div class="d-flex gap-3 fs-5">
+            <a href="#" class="text-muted" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-muted" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-muted" title="Telegram"><i class="bi bi-telegram"></i></a>
+            <a href="#" class="text-muted" title="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6">
+          <h5>Quick Paths</h5>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="{{ url_for('jobs') }}">Central SSC Careers</a></li>
+            <li><a href="{{ url_for('jobs') }}">Indian Railways (RRB)</a></li>
+            <li><a href="{{ url_for('jobs') }}">Banking & Insurance</a></li>
+            <li><a href="{{ url_for('jobs') }}">UPSC & Civil Services</a></li>
+            <li><a href="{{ url_for('jobs') }}">Defence & Police</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-6">
+          <h5>Tools & Guidance</h5>
+          <ul class="list-unstyled small d-flex flex-column gap-2">
+            <li><a href="{{ url_for('eligibility') }}">Eligibility Calculator</a></li>
+            <li><a href="{{ url_for('chat') }}">AI Career Chatbot</a></li>
+            <li><a href="{{ url_for('preparation') }}">Syllabus & Study Hub</a></li>
+            <li><a href="{{ url_for('saved') }}">Saved Roadmaps</a></li>
+            <li><a href="{{ url_for('profile') }}">Profile Preferences</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <h5>Official Sources & Advisory</h5>
+          <div class="disclaimer-box">
+            <strong><i class="bi bi-info-circle-fill me-1 text-info"></i> Preliminary Advisory Disclaimer:</strong>
+            This platform provides automated informational and educational guidance. Always verify active application dates, age cutoffs, and recruitment criteria with official gazette notifications published by respective recruitment commissions (SSC, UPSC, RRB, IBPS, State PSCs).
+          </div>
+        </div>
+      </div>
+      
+      <hr class="border-secondary opacity-25">
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center small text-muted">
+        <div>&copy; 2026 Government Job Guide AI. Built for Indian students and career aspirants.</div>
+        <div class="d-flex gap-3 mt-2 mt-sm-0">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Markdown & Sanitizer Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

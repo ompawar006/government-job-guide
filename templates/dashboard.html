@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – Government Job Guide AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Welcome Header -->
+  <div class="card card-custom p-4 mb-4 border-0" style="background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white;">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <span class="badge bg-info text-dark fw-bold px-3 py-1 rounded-pill mb-2">Aspirant Dashboard</span>
+        <h2 class="fw-bold mb-1">Welcome back, {{ user.name }}!</h2>
+        <p class="text-white-50 mb-0">
+          Your personal command center for government career planning, eligibility checks, and AI advisory.
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+        <a href="{{ url_for('profile') }}" class="btn btn-outline-light btn-sm me-2">
+          <i class="bi bi-person-gear me-1"></i> Edit Profile
+        </a>
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm">
+          <i class="bi bi-chat-dots-fill me-1"></i> Launch AI Chat
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Action Cards Grid -->
+  <h4 class="fw-bold mb-3"><i class="bi bi-grid-fill text-primary me-2"></i>Quick Actions</h4>
+  <div class="row g-3 mb-5">
+    <!-- Action 1: Explore Jobs -->
+    <div class="col-md-6 col-lg-3">
+      <a href="{{ url_for('jobs') }}" class="text-decoration-none">
+        <div class="card card-custom h-100 p-3 dashboard-stat-card">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon-box mb-0">
+              <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Explore Jobs</h6>
+              <small class="text-muted">9 major sectors & eligibility</small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Action 2: Check Eligibility -->
+    <div class="col-md-6 col-lg-3">
+      <a href="{{ url_for('eligibility') }}" class="text-decoration-none">
+        <div class="card card-custom h-100 p-3 dashboard-stat-card" style="border-left-color: #2563eb;">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon-box mb-0" style="background: #eff6ff; color: #2563eb;">
+              <i class="bi bi-compass-fill"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Check Eligibility</h6>
+              <small class="text-muted">AI profile matching tool</small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Action 3: Chat with AI -->
+    <div class="col-md-6 col-lg-3">
+      <a href="{{ url_for('chat') }}" class="text-decoration-none">
+        <div class="card card-custom h-100 p-3 dashboard-stat-card" style="border-left-color: #10b981;">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon-box mb-0" style="background: #ecfdf5; color: #10b981;">
+              <i class="bi bi-robot"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">AI Career Advisor</h6>
+              <small class="text-muted">Direct questions & voice chat</small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Action 4: Preparation Resources -->
+    <div class="col-md-6 col-lg-3">
+      <a href="{{ url_for('preparation') }}" class="text-decoration-none">
+        <div class="card card-custom h-100 p-3 dashboard-stat-card" style="border-left-color: #8b5cf6;">
+          <div class="d-flex align-items-center gap-3">
+            <div class="icon-box mb-0" style="background: #f5f3ff; color: #8b5cf6;">
+              <i class="bi bi-journal-check"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Preparation Hub</h6>
+              <small class="text-muted">Syllabus, books & strategies</small>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Content Rows: Saved Guidance & Next Steps -->
+  <div class="row g-4">
+    <!-- Left Column: Recently Saved Guidance -->
+    <div class="col-lg-7">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">
+            <i class="bi bi-bookmarks-fill text-primary me-2"></i>Recently Saved Guidance
+          </h5>
+          <a href="{{ url_for('saved') }}" class="small fw-semibold">View All ({{ recent_saved|length }})</a>
+        </div>
+
+        {% if recent_saved %}
+          <div class="list-group list-group-flush">
+            {% for item in recent_saved %}
+              <div class="list-group-item px-0 py-3">
+                <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                  <h6 class="mb-0 fw-bold text-primary">{{ item.title }}</h6>
+                  <span class="badge bg-light text-dark border">{{ item.category }}</span>
+                </div>
+                <p class="text-muted small mb-2 text-truncate" style="max-height: 40px;">
+                  {{ item.content[:150] }}...
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted"><i class="bi bi-clock me-1"></i> {{ item.created_at }}</small>
+                  <a href="{{ url_for('saved') }}" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size: 0.75rem;">
+                    Read Details
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="text-center py-5">
+            <div class="rounded-circle bg-light d-inline-flex p-3 mb-3 text-muted">
+              <i class="bi bi-bookmark-plus fs-2"></i>
+            </div>
+            <h6 class="fw-bold">No Saved Guidance Yet</h6>
+            <p class="text-muted small mb-3">
+              As you chat with the AI assistant or run the eligibility tool, click "Save" to keep important roadmaps here.
+            </p>
+            <a href="{{ url_for('chat') }}" class="btn btn-sm btn-primary-custom">
+              <i class="bi bi-chat-dots me-1"></i> Start a Consultation
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right Column: Suggested Next Steps & Profile Summary -->
+    <div class="col-lg-5">
+      <div class="card card-custom h-100 p-4">
+        <h5 class="fw-bold mb-3">
+          <i class="bi bi-check2-circle text-success me-2"></i>Suggested Next Steps
+        </h5>
+
+        <div class="d-flex flex-column gap-3 mb-4">
+          <!-- Step 1 -->
+          <div class="d-flex gap-3 align-items-start p-2 rounded bg-light">
+            <i class="bi bi-{% if profile and profile.qualification %}check-circle-fill text-success{% else %}circle text-muted{% endif %} fs-5 mt-1"></i>
+            <div>
+              <div class="fw-semibold small">Complete Profile Preferences</div>
+              <small class="text-muted">Set qualification, engineering branch, and target state.</small>
+              <div class="mt-1">
+                <a href="{{ url_for('profile') }}" class="small fw-semibold">Update in Profile &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="d-flex gap-3 align-items-start p-2 rounded bg-light">
+            <i class="bi bi-circle text-muted fs-5 mt-1"></i>
+            <div>
+              <div class="fw-semibold small">Run Automated Eligibility Audit</div>
+              <small class="text-muted">Check which central or state exams match your age and degree.</small>
+              <div class="mt-1">
+                <a href="{{ url_for('eligibility') }}" class="small fw-semibold">Open Eligibility Tool &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="d-flex gap-3 align-items-start p-2 rounded bg-light">
+            <i class="bi bi-circle text-muted fs-5 mt-1"></i>
+            <div>
+              <div class="fw-semibold small">Study Quantitative Aptitude & Reasoning</div>
+              <small class="text-muted">Review standard books and topics common across all Tier-1 exams.</small>
+              <div class="mt-1">
+                <a href="{{ url_for('preparation') }}" class="small fw-semibold">Open Preparation Hub &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-primary-subtle rounded border border-primary-subtle text-primary-emphasis small">
+          <strong><i class="bi bi-lightbulb-fill text-warning me-1"></i> Aspirant Tip:</strong>
+          Recruitments for banking (IBPS) and SSC occur on predictable annual calendars. Plan your mock tests at least 4 months in advance of Tier-1 dates.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

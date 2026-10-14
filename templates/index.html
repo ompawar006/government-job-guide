@@ -1,0 +1,413 @@
+{% extends "base.html" %}
+
+{% block title %}Government Job Guide – AI Career Assistant for Indian Aspirants{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-gradient text-center text-lg-start">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-pill">
+          <i class="bi bi-stars"></i> Powered by Google Gemini AI & Government Recruitment Data
+        </div>
+        <h1 class="hero-title">
+          Your Future in <span class="highlight">Government Careers</span> Starts Here
+        </h1>
+        <p class="hero-subtitle">
+          Discover eligible central and state government exams tailored to your education, branch, age, and state. Get personalized preparation plans, exam patterns, and unbiased career roadmaps.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+          <a href="{{ url_for('jobs') }}" class="btn btn-primary-custom btn-lg">
+            <i class="bi bi-compass"></i> Explore Career Paths
+          </a>
+          <a href="{{ url_for('chat') }}" class="btn btn-outline-custom btn-lg">
+            <i class="bi bi-chat-dots-fill"></i> Chat with AI Assistant
+          </a>
+        </div>
+        
+        <!-- Trust Metrics -->
+        <div class="row mt-5 pt-3 g-4 border-top border-secondary border-opacity-25 text-center text-sm-start">
+          <div class="col-sm-4">
+            <h3 class="fw-bold text-white mb-0">150+</h3>
+            <p class="text-muted small mb-0">Government Exams Covered</p>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="fw-bold text-white mb-0">9 Major</h3>
+            <p class="text-muted small mb-0">Recruitment Sectors</p>
+          </div>
+          <div class="col-sm-4">
+            <h3 class="fw-bold text-white mb-0">100% Free</h3>
+            <p class="text-muted small mb-0">Open Career Guidance</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-5">
+        <div class="card card-custom p-4 shadow-lg border-0" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
+          <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill">
+              <i class="bi bi-lightning-charge-fill me-1 text-warning"></i> Instant AI Evaluation
+            </span>
+            <small class="text-muted">Updated for 2026</small>
+          </div>
+          
+          <h5 class="fw-bold text-navy mb-2">Check Your Eligibility in 30 Seconds</h5>
+          <p class="text-muted small mb-3">Tell us your background and our AI agent will find matching government jobs.</p>
+          
+          <form action="{{ url_for('eligibility') }}" method="GET">
+            <div class="mb-3">
+              <label class="form-label">Highest Qualification</label>
+              <select name="qualification" class="form-select" required>
+                <option value="B.Tech / B.E. (Engineering)">B.Tech / B.E. (Engineering)</option>
+                <option value="12th Pass (Higher Secondary)">12th Pass (Higher Secondary)</option>
+                <option value="General Bachelor's Degree (BA/BSc/BCom)">General Bachelor's Degree</option>
+                <option value="Diploma / Polytechnic">Diploma / Polytechnic</option>
+                <option value="10th Pass (Matriculation)">10th Pass (Matriculation)</option>
+                <option value="Post Graduation / Master's">Post Graduation / Master's</option>
+                <option value="ITI Certificate">ITI Certificate</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Your Age</label>
+              <input type="number" name="age" class="form-control" value="21" min="16" max="45" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary-custom w-100 py-2">
+              <i class="bi bi-search me-1"></i> Discover Eligible Jobs
+            </button>
+          </form>
+          
+          <div class="mt-3 text-center">
+            <small class="text-muted"><i class="bi bi-shield-lock me-1"></i> No registration needed to test.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sector Explorer Section -->
+<section class="py-5">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="badge bg-info-subtle text-info-emphasis px-3 py-2 rounded-pill mb-2 fw-semibold">
+        Recruitment Streams
+      </span>
+      <h2 class="fw-bold">Explore Major Government Sectors</h2>
+      <p class="text-muted">From Central Ministries to Armed Forces and Technical PSUs, explore roles aligned with your passion.</p>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Sector 1: SSC -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box">
+            <i class="bi bi-building"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Staff Selection Commission (SSC)</h5>
+          <p class="text-muted small mb-3">
+            Central ministry appointments including CGL (Graduate Level), CHSL (12th Pass), CPO (Sub-Inspectors), and MTS.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">10th, 12th, Graduate</span>
+            <a href="{{ url_for('jobs') }}#ssc" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sector 2: Railways -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box">
+            <i class="bi bi-train-front"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Indian Railways (RRB)</h5>
+          <p class="text-muted small mb-3">
+            World's 4th largest railway employer. Roles for Station Master, Assistant Loco Pilot (ALP), Technicians, and Junior Engineers.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">10th, ITI, Diploma, Degree</span>
+            <a href="{{ url_for('jobs') }}#railways" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sector 3: Banking -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box">
+            <i class="bi bi-bank"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Banking & Public Financial Bodies</h5>
+          <p class="text-muted small mb-3">
+            Fastest recruitment cycles in India: IBPS PO, Clerk, Specialist Officer (IT/Law), SBI PO, and RBI Grade B.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">Graduation, B.Tech IT</span>
+            <a href="{{ url_for('jobs') }}#banking" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sector 4: UPSC -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box navy">
+            <i class="bi bi-award"></i>
+          </div>
+          <h5 class="fw-bold mb-2">UPSC & Civil Services</h5>
+          <p class="text-muted small mb-3">
+            Premier All-India Services (IAS, IPS, IFS) and Group A civil posts, Engineering Services (ESE), and CAPF AC.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">Any Graduation</span>
+            <a href="{{ url_for('jobs') }}#upsc" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sector 5: Defence -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box navy">
+            <i class="bi bi-shield-shaded"></i>
+          </div>
+          <h5 class="fw-bold mb-2">Defence & Armed Forces</h5>
+          <p class="text-muted small mb-3">
+            Army, Navy, and Air Force. Commissioned officer entries (NDA, CDS, AFCAT, TGC) and Agniveer soldier entries.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">10th, 12th, B.Tech</span>
+            <a href="{{ url_for('jobs') }}#defence" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sector 6: Technical PSUs -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-custom h-100 p-4">
+          <div class="icon-box success">
+            <i class="bi bi-cpu"></i>
+          </div>
+          <h5 class="fw-bold mb-2">PSUs & Technical Careers</h5>
+          <p class="text-muted small mb-3">
+            Maharatna & Navratna companies (ISRO, DRDO, IOCL, ONGC, BHEL, NIC). Direct tech exams and GATE selections.
+          </p>
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="badge bg-light text-dark">B.Tech, Diploma, MSc</span>
+            <a href="{{ url_for('jobs') }}#psu" class="fw-semibold small">View Details <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-white border-top border-bottom">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2 fw-semibold">
+        Simple 3-Step Process
+      </span>
+      <h2 class="fw-bold">How Government Job Guide Works</h2>
+      <p class="text-muted">Navigating government recruitment doesn't need to be confusing or overwhelmed by fake rumors.</p>
+    </div>
+    
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center mb-4" style="width: 72px; height: 72px; font-size: 1.8rem; font-weight: 700;">
+            1
+          </div>
+          <h5 class="fw-bold mb-2">Share Your Background</h5>
+          <p class="text-muted small">
+            Specify your degree, year of study, state of residence, and whether you prefer technical engineering or general civil duties.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="rounded-circle bg-info-subtle text-info-emphasis d-inline-flex align-items-center justify-content-center mb-4" style="width: 72px; height: 72px; font-size: 1.8rem; font-weight: 700;">
+            2
+          </div>
+          <h5 class="fw-bold mb-2">AI Evaluates Criteria</h5>
+          <p class="text-muted small">
+            Our AI engine compares your profile against official recruitment norms (UPSC, SSC, RRB, Banking) to filter genuine eligible opportunities.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="p-4">
+          <div class="rounded-circle bg-success-subtle text-success d-inline-flex align-items-center justify-content-center mb-4" style="width: 72px; height: 72px; font-size: 1.8rem; font-weight: 700;">
+            3
+          </div>
+          <h5 class="fw-bold mb-2">Get Strategic Roadmap</h5>
+          <p class="text-muted small">
+            Receive syllabus breakdowns, exam stages (Prelims/Mains/Interview), official commission portals, and bookmark guides to your profile.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Example Recommendations Section -->
+<section class="py-5">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <h2 class="fw-bold">Tailored Career Pathways by Education</h2>
+      <p class="text-muted">See real examples of guidance generated by our AI Assistant for different applicant profiles.</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 p-3">
+          <span class="badge bg-primary mb-2 align-self-start">10th / 12th Pass</span>
+          <h6 class="fw-bold mb-2">Immediate Entry Options</h6>
+          <ul class="text-muted small ps-3 mb-3">
+            <li>SSC CHSL & MTS (Clerical & Multitasking)</li>
+            <li>NDA & NA (Defence Cadet Officer)</li>
+            <li>RRB NTPC Undergraduate Posts</li>
+            <li>State Police Constable Services</li>
+          </ul>
+          <a href="{{ url_for('chat') }}" class="btn btn-sm btn-outline-primary mt-auto">Ask AI About 12th Jobs</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 p-3">
+          <span class="badge bg-info text-dark mb-2 align-self-start">B.Tech / B.E. (CSE/IT)</span>
+          <h6 class="fw-bold mb-2">Software & Tech Services</h6>
+          <ul class="text-muted small ps-3 mb-3">
+            <li>NIC Scientist B & Scientific Officer</li>
+            <li>IBPS SO (IT Specialist Officer)</li>
+            <li>ISRO / DRDO Technical Cadre</li>
+            <li>Intelligence Bureau (ACIO Tech)</li>
+          </ul>
+          <a href="{{ url_for('chat') }}" class="btn btn-sm btn-outline-primary mt-auto">Ask AI About B.Tech CSE</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 p-3">
+          <span class="badge bg-warning text-dark mb-2 align-self-start">Diploma / Polytechnic</span>
+          <h6 class="fw-bold mb-2">Junior Engineer Cadres</h6>
+          <ul class="text-muted small ps-3 mb-3">
+            <li>SSC JE (CPWD, MES, BRO)</li>
+            <li>RRB Junior Engineer (Railways)</li>
+            <li>State PWD & Irrigation Boards</li>
+            <li>PSU Technician Apprentice Entries</li>
+          </ul>
+          <a href="{{ url_for('chat') }}" class="btn btn-sm btn-outline-primary mt-auto">Ask AI About Diploma Jobs</a>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 p-3">
+          <span class="badge bg-dark mb-2 align-self-start">Graduation (Any Stream)</span>
+          <h6 class="fw-bold mb-2">Administrative & Banking</h6>
+          <ul class="text-muted small ps-3 mb-3">
+            <li>UPSC Civil Services (IAS, IPS, IFS)</li>
+            <li>SSC CGL (Tax Inspector, ASO, Auditor)</li>
+            <li>SBI PO & IBPS Probationary Officer</li>
+            <li>State PSC Group-1 & Talathi Bharti</li>
+          </ul>
+          <a href="{{ url_for('chat') }}" class="btn btn-sm btn-outline-primary mt-auto">Ask AI About Graduate Jobs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Frequently Asked Questions -->
+<section class="py-5 bg-white border-top">
+  <div class="container py-4">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <span class="badge bg-info-subtle text-info-emphasis px-3 py-2 rounded-pill mb-2 fw-semibold">FAQ</span>
+      <h2 class="fw-bold">Frequently Asked Questions</h2>
+      <p class="text-muted">Answers to common queries about government recruitment and our AI advisor.</p>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion shadow-sm rounded" id="faqAccordion">
+          <!-- FAQ 1 -->
+          <div class="accordion-item border-0 border-bottom">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Can I apply for government exams while in my final year of college?
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted small">
+                Yes! Major exams such as UPSC Civil Services (Prelims), CDS, AFCAT, and certain SSC exams allow final-year appearing candidates to sit for the preliminary stages, provided proof of passing the qualifying degree is submitted before the designated mains or interview document verification stage.
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ 2 -->
+          <div class="accordion-item border-0 border-bottom">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Does this website guarantee selection or active vacancy hiring?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted small">
+                No. Government Job Guide provides educational career guidance, eligibility breakdowns, and preparation advice. It does not conduct recruitment or guarantee jobs. Official hiring is conducted solely by government bodies such as UPSC, SSC, RRB, and State PSCs through their respective official gazettes.
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ 3 -->
+          <div class="accordion-item border-0 border-bottom">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Are there government job opportunities specifically for B.Tech Computer Science?
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted small">
+                Yes, abundant opportunities exist! Specialized roles include Scientist B at National Informatics Centre (NIC), IBPS Specialist Officer (IT), DRDO & ISRO Scientist positions, ACIO Technical at Intelligence Bureau, and IT officers across major PSUs (IOCL, BEL, PowerGrid). Additionally, engineering graduates are eligible for all general administrative roles like UPSC CSE and SSC CGL.
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ 4 -->
+          <div class="accordion-item border-0">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Can I talk to the AI using voice in Hindi or Hinglish?
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-muted small">
+                Yes! The AI assistant supports voice input via your browser's microphone and understands English, Hindi, and mixed Hinglish. It will respond in the language or style you prefer.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Banner -->
+<section class="py-5" style="background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white;">
+  <div class="container text-center py-4">
+    <h2 class="fw-bold mb-3">Ready to Plan Your Government Career?</h2>
+    <p class="text-white-50 max-w-600 mx-auto mb-4">
+      Create a free account to save tailored exam guides, track preparation milestones, and ask our AI agent anything.
+    </p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{{ url_for('register') }}" class="btn btn-primary-custom btn-lg">Create Free Account</a>
+      <a href="{{ url_for('chat') }}" class="btn btn-outline-custom btn-lg">Try AI Chat First</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

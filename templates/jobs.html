@@ -1,0 +1,596 @@
+{% extends "base.html" %}
+
+{% block title %}Government Job Categories – Detailed Guidance{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Page Header -->
+  <div class="text-center max-w-700 mx-auto mb-5">
+    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2 fw-semibold">
+      Career Directory
+    </span>
+    <h1 class="fw-bold">Major Government Job Categories</h1>
+    <p class="text-muted">
+      Comprehensive career guides across 9 primary recruitment sectors in India. Click on any category to view selection stages, educational norms, and official portals.
+    </p>
+    <div class="alert alert-info py-2 px-3 d-inline-block small">
+      <i class="bi bi-info-circle-fill me-1"></i> <strong>General Guidance Notice:</strong> Eligibility requirements and age limits vary per recruitment notification. Always consult official commission notifications.
+    </div>
+  </div>
+
+  <!-- Search & Filter Bar -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" id="categorySearch" class="form-control py-2" placeholder="Search category, post, or education (e.g., B.Tech, 12th, SSC, Police)...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Grid -->
+  <div class="row g-4" id="categoriesGrid">
+
+    <!-- 1. SSC -->
+    <div class="col-lg-4 col-md-6 category-item" id="ssc" data-keywords="ssc cgl chsl mts cpo staff selection commission 10th 12th graduate cbi excise inspector">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box"><i class="bi bi-building"></i></div>
+          <span class="badge bg-light text-dark border">Central Ministries</span>
+        </div>
+        <h4 class="fw-bold mb-2">Staff Selection Commission (SSC)</h4>
+        <p class="text-muted small mb-3">
+          India's major recruitment body for Group B & C civil administrative cadres across central ministries and departments.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>SSC CGL:</strong> Graduate level (ASO, Income Tax, GST Inspector)</li>
+          <li><strong>SSC CHSL:</strong> 12th pass (LDC, JSA, Data Entry Operator)</li>
+          <li><strong>SSC MTS:</strong> 10th pass general central service</li>
+          <li><strong>SSC CPO:</strong> Sub-Inspector in Delhi Police & CAPFs</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSSC">
+            View Selection & Syllabus
+          </button>
+          <a href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer" class="small text-muted" title="Official SSC Portal">
+            ssc.gov.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Indian Railways -->
+    <div class="col-lg-4 col-md-6 category-item" id="railways" data-keywords="railway rrb rrc ntpc alp loco pilot technician je station master 10th iti diploma">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box" style="background: #fef2f2; color: #ef4444;"><i class="bi bi-train-front"></i></div>
+          <span class="badge bg-light text-dark border">Indian Railways</span>
+        </div>
+        <h4 class="fw-bold mb-2">Indian Railways (RRB & RRC)</h4>
+        <p class="text-muted small mb-3">
+          Technical, operational, and non-technical popular categories across 21 regional Railway Recruitment Boards.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>RRB NTPC:</strong> Station Master, Goods Guard, Clerks (12th & Degree)</li>
+          <li><strong>RRB ALP & Technician:</strong> Matric + ITI or Diploma/B.Tech</li>
+          <li><strong>RRB JE:</strong> Junior Engineer across civil, electrical, mechanical</li>
+          <li><strong>RRC Level 1:</strong> Track maintainer and assistant roles (10th/ITI)</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalRailways">
+            View Selection & Syllabus
+          </button>
+          <a href="https://indianrailways.gov.in" target="_blank" rel="noopener noreferrer" class="small text-muted" title="Official Railways Portal">
+            indianrailways.gov.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Banking -->
+    <div class="col-lg-4 col-md-6 category-item" id="banking" data-keywords="banking ibps sbi rbi po clerk specialist officer it officer b.tech graduate">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box" style="background: #f0fdf4; color: #16a34a;"><i class="bi bi-bank"></i></div>
+          <span class="badge bg-light text-dark border">Public Finance</span>
+        </div>
+        <h4 class="fw-bold mb-2">Banking & Financial Institutions</h4>
+        <p class="text-muted small mb-3">
+          Nationalized public sector banks (PSBs) and apex regulatory institutions with swift annual recruitment cycles.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>IBPS & SBI PO:</strong> Probationary Officers (Any Degree, 20–30 yrs)</li>
+          <li><strong>IBPS SO (IT Officer):</strong> B.Tech CSE/IT, MCA (Scale 1 Specialist)</li>
+          <li><strong>IBPS & SBI Clerk:</strong> Customer support and clerical cadre</li>
+          <li><strong>RBI Grade B:</strong> Apex central bank officer recruitment</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalBanking">
+            View Selection & Syllabus
+          </button>
+          <a href="https://ibps.in" target="_blank" rel="noopener noreferrer" class="small text-muted" title="Official IBPS Portal">
+            ibps.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. UPSC & Civil Services -->
+    <div class="col-lg-4 col-md-6 category-item" id="upsc" data-keywords="upsc civil services ias ips ifs irs ese ies capf graduate degree">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box navy"><i class="bi bi-award"></i></div>
+          <span class="badge bg-light text-dark border">All-India Services</span>
+        </div>
+        <h4 class="fw-bold mb-2">UPSC & Civil Services</h4>
+        <p class="text-muted small mb-3">
+          India's most prestigious competitive examinations for high administrative, police, diplomatic, and engineering posts.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>Civil Services Exam (CSE):</strong> IAS, IPS, IFS, IRS (Any Graduation)</li>
+          <li><strong>Engineering Services (ESE):</strong> Class-1 engineers in Railways, CPWD</li>
+          <li><strong>CDS & NDA:</strong> Commissioned Armed Forces leadership</li>
+          <li><strong>CAPF (AC):</strong> Assistant Commandants in BSF, CRPF, CISF</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUPSC">
+            View Selection & Syllabus
+          </button>
+          <a href="https://upsc.gov.in" target="_blank" rel="noopener noreferrer" class="small text-muted" title="Official UPSC Portal">
+            upsc.gov.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Maharashtra State Government -->
+    <div class="col-lg-4 col-md-6 category-item" id="maharashtra" data-keywords="maharashtra mpsc rajyaseva talathi psi sti aso zilla parishad police bharti marathi">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box" style="background: #fff7ed; color: #ea580c;"><i class="bi bi-geo-alt"></i></div>
+          <span class="badge bg-light text-dark border">State PSC</span>
+        </div>
+        <h4 class="fw-bold mb-2">Maharashtra State Government</h4>
+        <p class="text-muted small mb-3">
+          State public recruitment by MPSC, Mahapariksha, and Revenue department requiring state domicile and Marathi fluency.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>MPSC Rajyaseva:</strong> Dy. Collector, DySP, Tehsildar (Degree)</li>
+          <li><strong>MPSC Subordinate Services:</strong> PSI, STI, ASO (Group B)</li>
+          <li><strong>Talathi Bharti:</strong> Village revenue officers (Any Graduate + MS-CIT)</li>
+          <li><strong>Maharashtra Police:</strong> Constable, SRPF, Driver (12th Pass)</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalMaharashtra">
+            View Selection & Syllabus
+          </button>
+          <a href="https://mpsc.gov.in" target="_blank" rel="noopener noreferrer" class="small text-muted" title="Official MPSC Portal">
+            mpsc.gov.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Police & CAPF -->
+    <div class="col-lg-4 col-md-6 category-item" id="police" data-keywords="police ssc cpo si constable crpf bsf cisf itbp ssb physical test">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box" style="background: #f1f5f9; color: #334155;"><i class="bi bi-shield-lock"></i></div>
+          <span class="badge bg-light text-dark border">Uniformed Force</span>
+        </div>
+        <h4 class="fw-bold mb-2">Police & Paramilitary (CAPFs)</h4>
+        <p class="text-muted small mb-3">
+          Law enforcement and border security services emphasizing physical fitness, endurance, and aptitude.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>SSC GD Constable:</strong> 10th Pass (BSF, CISF, CRPF, ITBP, AR)</li>
+          <li><strong>SSC CPO Sub-Inspector:</strong> Graduate entry for Delhi Police & CAPFs</li>
+          <li><strong>State Police SI & Constable:</strong> State-level law enforcement</li>
+          <li><strong>IB ACIO:</strong> Intelligence Bureau executive and investigative cadre</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalPolice">
+            View Selection & Syllabus
+          </button>
+          <a href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer" class="small text-muted">
+            ssc.gov.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Defence -->
+    <div class="col-lg-4 col-md-6 category-item" id="defence" data-keywords="defence army navy air force nda cds afcat agniveer ssb interview 12th b.tech">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box navy"><i class="bi bi-shield-shaded"></i></div>
+          <span class="badge bg-light text-dark border">Armed Forces</span>
+        </div>
+        <h4 class="fw-bold mb-2">Defence Forces (Armed Forces)</h4>
+        <p class="text-muted small mb-3">
+          Indian Army, Indian Navy, and Indian Air Force officer commission courses and Agniveer service entries.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>NDA & NA:</strong> 12th Pass cadet entry (UPSC + 5-day SSB)</li>
+          <li><strong>CDS & AFCAT:</strong> Graduate officer entries (IMA, OTA, AFA, INA)</li>
+          <li><strong>Technical Entries:</strong> TGC, TES, Navy Tech (B.Tech PCM / Degree)</li>
+          <li><strong>Agniveer Scheme:</strong> 4-year soldier/sailor/airman enlistment</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDefence">
+            View Selection & Syllabus
+          </button>
+          <a href="https://joinindianarmy.nic.in" target="_blank" rel="noopener noreferrer" class="small text-muted">
+            joinindianarmy.nic.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Teaching -->
+    <div class="col-lg-4 col-md-6 category-item" id="teaching" data-keywords="teaching ctet tet ugc net kvs nvs prt tgt pgt b.ed bed professor school">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box" style="background: #fdf4ff; color: #c026d3;"><i class="bi bi-book"></i></div>
+          <span class="badge bg-light text-dark border">Education & Research</span>
+        </div>
+        <h4 class="fw-bold mb-2">Teaching & Academic Services</h4>
+        <p class="text-muted small mb-3">
+          Primary, secondary, and higher education positions in central schools (KVS, NVS) and government colleges.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>CTET / State TET:</strong> Mandatory qualification for school teachers</li>
+          <li><strong>KVS / NVS Recruitment:</strong> PRT, TGT, PGT teacher vacancies</li>
+          <li><strong>UGC NET / CSIR NET:</strong> Assistant Professor & JRF in universities</li>
+          <li><strong>State PSC Lecturers:</strong> Polytechnic & degree college faculty</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalTeaching">
+            View Selection & Syllabus
+          </button>
+          <a href="https://ctet.nic.in" target="_blank" rel="noopener noreferrer" class="small text-muted">
+            ctet.nic.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. PSU & Technical Careers -->
+    <div class="col-lg-4 col-md-6 category-item" id="psu" data-keywords="psu isro drdo nic barc gate iocl ongc bhel b.tech cse mechanical civil electrical">
+      <div class="card card-custom h-100 p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="icon-box success"><i class="bi bi-cpu"></i></div>
+          <span class="badge bg-light text-dark border">Engineering & Tech</span>
+        </div>
+        <h4 class="fw-bold mb-2">PSUs & Technical Research</h4>
+        <p class="text-muted small mb-3">
+          Public Sector Undertakings and premier R&D agencies offering core software, electronics, and engineering cadres.
+        </p>
+        <ul class="text-muted small ps-3 mb-4">
+          <li><strong>GATE PSU Recruits:</strong> IOCL, ONGC, NTPC, PowerGrid, BHEL</li>
+          <li><strong>NIC Scientist B:</strong> Direct exam for B.Tech CSE/IT</li>
+          <li><strong>ISRO & DRDO (RAC):</strong> Scientist 'B' engineering research posts</li>
+          <li><strong>BARC & NPCIL:</strong> Scientific Officer training schemes (OCES/DGFS)</li>
+        </ul>
+        <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalPSU">
+            View Selection & Syllabus
+          </button>
+          <a href="https://gate2025.iitr.ac.in" target="_blank" rel="noopener noreferrer" class="small text-muted">
+            gate.iit.ac.in <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal 1: SSC Details -->
+<div class="modal fade" id="modalSSC" tabindex="-1" aria-labelledby="modalSSCLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalSSCLabel"><i class="bi bi-building me-2 text-primary"></i> Staff Selection Commission (SSC) Career Roadmap</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Educational Eligibility</h6>
+        <p class="small text-muted">
+          - <strong>SSC CGL:</strong> Bachelor’s Degree in any discipline from a recognized university. Age 18–30 or 18–32 years (post-dependent).<br>
+          - <strong>SSC CHSL:</strong> 12th standard pass. Age 18–27 years.<br>
+          - <strong>SSC JE:</strong> Diploma or Degree in Civil, Mechanical, or Electrical Engineering. Age up to 30/32 years.<br>
+          - <strong>SSC MTS:</strong> 10th standard pass. Age 18–25 or 18–27 years.
+        </p>
+
+        <h6 class="fw-bold text-navy mt-3">2. Common Selection Stages</h6>
+        <p class="small text-muted">
+          - <strong>Tier-I (Computer Based Test):</strong> 100 questions (200 marks) testing General Intelligence & Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension. Qualifying in nature.<br>
+          - <strong>Tier-II (Mains CBT):</strong> Mathematical Abilities, Reasoning, English Language, General Awareness, Computer Knowledge Module, and Data Entry Speed Test (DEST).<br>
+          - <strong>Stage 3:</strong> Document Verification (DV) conducted directly by user departments.
+        </p>
+
+        <h6 class="fw-bold text-navy mt-3">3. Key Preparation Topics</h6>
+        <p class="small text-muted">
+          Arithmetic, Advanced Math (Geometry, Trigonometry, Algebra), Non-verbal Reasoning, Current Affairs of past 6 months, English Grammar & Vocabulary.
+        </p>
+
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Link:</strong> Apply and check schedules at <a href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer">ssc.gov.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About SSC Preparation</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Railways Details -->
+<div class="modal fade" id="modalRailways" tabindex="-1" aria-labelledby="modalRailwaysLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalRailwaysLabel"><i class="bi bi-train-front me-2 text-danger"></i> Indian Railways (RRB) Selection Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Educational Norms</h6>
+        <p class="small text-muted">
+          - <strong>NTPC Graduate:</strong> Any Bachelor’s Degree. Roles: Station Master, Goods Train Manager. Age: 18–33/36.<br>
+          - <strong>NTPC Undergraduate:</strong> 12th Pass. Roles: Junior Clerk, Accounts Clerk, Trains Clerk. Age: 18–30.<br>
+          - <strong>ALP (Assistant Loco Pilot):</strong> 10th + ITI, or 3-year Diploma in Mechanical/Electrical/Automobile Engineering, or B.Tech.<br>
+          - <strong>Junior Engineer:</strong> 3-year Diploma or Degree in relevant engineering branch.
+        </p>
+
+        <h6 class="fw-bold text-navy mt-3">2. Selection Stages</h6>
+        <p class="small text-muted">
+          - <strong>CBT 1:</strong> Screening test on Mathematics, General Intelligence, General Science, and General Awareness.<br>
+          - <strong>CBT 2:</strong> In-depth examination determining merit.<br>
+          - <strong>CBAT (Aptitude Test):</strong> Mandatory only for Station Master & Loco Pilot posts.<br>
+          - <strong>Medical Standard A-1:</strong> Strict distant visual acuity 6/6 without glasses for Loco Pilot posts.
+        </p>
+
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Source:</strong> Regional RRB sites such as <a href="https://rrbcdg.gov.in" target="_blank" rel="noopener noreferrer">rrbcdg.gov.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About Railway Jobs</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Banking Details -->
+<div class="modal fade" id="modalBanking" tabindex="-1" aria-labelledby="modalBankingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalBankingLabel"><i class="bi bi-bank me-2 text-success"></i> Public Sector Banking Roadmap</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Eligibility Criteria</h6>
+        <p class="small text-muted">
+          - <strong>PO / Clerk:</strong> Graduation in any discipline from a recognized University. Age: 20–30 years for PO, 20–28 years for Clerk.<br>
+          - <strong>Specialist Officer (IT):</strong> 4-year Engineering Degree in Computer Science, Computer Applications, Information Technology, or Electronics. Age: 20–30 years.
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. Fast Selection Stages (6-8 Months Total)</h6>
+        <p class="small text-muted">
+          - <strong>Preliminary Exam:</strong> English Language, Quantitative Aptitude, Reasoning Ability (60 minutes sectional timer).<br>
+          - <strong>Mains Exam:</strong> Data Analysis & Interpretation, General Economy & Banking Awareness, Reasoning & Computer Aptitude, plus English Descriptive Essay/Letter.<br>
+          - <strong>Interview:</strong> Panel interview (for PO and SO cadres only; Clerical posts do not have interviews).
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Portal:</strong> <a href="https://ibps.in" target="_blank" rel="noopener noreferrer">ibps.in</a> and <a href="https://sbi.co.in/careers" target="_blank" rel="noopener noreferrer">sbi.co.in/careers</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About Banking PO/SO</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4: UPSC Details -->
+<div class="modal fade" id="modalUPSC" tabindex="-1" aria-labelledby="modalUPSCLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalUPSCLabel"><i class="bi bi-award me-2 text-primary"></i> UPSC Civil Services Examination (CSE) Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Eligibility Criteria</h6>
+        <p class="small text-muted">
+          Degree in any discipline (B.A., B.Sc., B.Com., B.Tech., MBBS). Age: 21–32 years for General category (relaxations: 3 years OBC, 5 years SC/ST). Attempts: 6 for General, 9 for OBC, unlimited for SC/ST within age limits.
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. Three Rigorous Stages</h6>
+        <p class="small text-muted">
+          - <strong>Preliminary Examination:</strong> Paper I (General Studies - 200 marks determines cutoff) + Paper II (CSAT - 33% qualifying mark).<br>
+          - <strong>Mains Examination (Descriptive):</strong> 9 papers totaling 1750 marks (2 Language papers, 1 Essay, 4 GS papers, 2 Optional subject papers).<br>
+          - <strong>Personality Test:</strong> 275 marks interview assessing leadership, intellectual integrity, and administrative balance.
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Commission Portal:</strong> <a href="https://upsc.gov.in" target="_blank" rel="noopener noreferrer">upsc.gov.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About UPSC Strategy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5: Maharashtra Details -->
+<div class="modal fade" id="modalMaharashtra" tabindex="-1" aria-labelledby="modalMaharashtraLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalMaharashtraLabel"><i class="bi bi-geo-alt me-2 text-warning"></i> Maharashtra Public Services (MPSC) Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. State Specific Requirements</h6>
+        <p class="small text-muted">
+          - <strong>Domicile:</strong> Maharashtra Domicile certificate mandatory for state reservation quotas.<br>
+          - <strong>Language:</strong> Fluency in Marathi (Reading, Writing, Speaking) is tested in qualifying language papers.
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. Major Examinations</h6>
+        <p class="small text-muted">
+          - <strong>MPSC Rajyaseva:</strong> State civil services for Deputy Collector, DySP, Tehsildar.<br>
+          - <strong>MPSC Non-Gazetted Group B & C:</strong> Police Sub-Inspector (PSI), State Tax Inspector (STI), Assistant Section Officer (ASO).<br>
+          - <strong>Talathi / Zilla Parishad Bharti:</strong> Direct recruitments for revenue and rural governance.
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Portal:</strong> <a href="https://mpsc.gov.in" target="_blank" rel="noopener noreferrer">mpsc.gov.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About MPSC Exam</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 6: Police Details -->
+<div class="modal fade" id="modalPolice" tabindex="-1" aria-labelledby="modalPoliceLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalPoliceLabel"><i class="bi bi-shield-lock me-2 text-dark"></i> Police & CAPF Services Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Physical Standards (Mandatory)</h6>
+        <p class="small text-muted">
+          Male candidates typically require minimum height of 170 cm (relaxable for hill areas/ST), chest expansion 80-85 cm. Female candidates minimum height 157 cm. Running standards (e.g. 5 km in 24 mins or 1600 m in 6.5 mins).
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. Selection Stages</h6>
+        <p class="small text-muted">
+          - Written Examination (General Intelligence, Reasoning, Numerical Ability, English/Hindi).<br>
+          - Physical Standard Test (PST) and Physical Endurance Test (PET).<br>
+          - Detailed Medical Examination (DME).
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Links:</strong> SSC website for CPO/GD at <a href="https://ssc.gov.in" target="_blank" rel="noopener noreferrer">ssc.gov.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About Police Physical Standards</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 7: Defence Details -->
+<div class="modal fade" id="modalDefence" tabindex="-1" aria-labelledby="modalDefenceLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalDefenceLabel"><i class="bi bi-shield-shaded me-2 text-primary"></i> Armed Forces Commissioning Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Key Entry Schemes</h6>
+        <p class="small text-muted">
+          - <strong>NDA & NA:</strong> 12th pass (PCM for Navy/Air Force). Age 16.5–19.5.<br>
+          - <strong>CDS (Combined Defence Services):</strong> Graduates for Army, Navy, Air Force academies.<br>
+          - <strong>AFCAT:</strong> Air Force Common Admission Test for Flying and Ground Duty branches.<br>
+          - <strong>Technical Entries:</strong> Direct SSB interviews for B.Tech graduates (TGC, SSC-Tech).
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. 5-Day SSB Interview</h6>
+        <p class="small text-muted">
+          Stage 1: OIR Test & PPDT (Screening). Stage 2: Psychological tests (TAT, WAT, SRT), Group Testing Officer (GTO) tasks, Personal Interview, and Final Board Conference.
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Portals:</strong> <a href="https://joinindianarmy.nic.in" target="_blank" rel="noopener noreferrer">joinindianarmy.nic.in</a>, <a href="https://joinindiannavy.gov.in" target="_blank" rel="noopener noreferrer">joinindiannavy.gov.in</a>, <a href="https://careerindianairforce.cdac.in" target="_blank" rel="noopener noreferrer">careerindianairforce.cdac.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About SSB Interview Prep</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 8: Teaching Details -->
+<div class="modal fade" id="modalTeaching" tabindex="-1" aria-labelledby="modalTeachingLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalTeachingLabel"><i class="bi bi-book me-2 text-danger"></i> Teaching & Academic Cadres Guide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Necessary Teacher Certifications</h6>
+        <p class="small text-muted">
+          - <strong>PRT (Primary Teacher):</strong> 12th + D.El.Ed/JBT + CTET Paper-I.<br>
+          - <strong>TGT (Trained Graduate Teacher):</strong> Bachelor's Degree + B.Ed + CTET Paper-II.<br>
+          - <strong>PGT (Post Graduate Teacher):</strong> Master's Degree in subject + B.Ed.<br>
+          - <strong>College Lecturer / Professor:</strong> Master's Degree with minimum 55% + UGC-NET / CSIR-NET or Ph.D.
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Links:</strong> <a href="https://ctet.nic.in" target="_blank" rel="noopener noreferrer">ctet.nic.in</a>, <a href="https://ugcnet.nta.ac.in" target="_blank" rel="noopener noreferrer">ugcnet.nta.ac.in</a>, <a href="https://kvsangathan.nic.in" target="_blank" rel="noopener noreferrer">kvsangathan.nic.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About Teaching Exams</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 9: PSU Details -->
+<div class="modal fade" id="modalPSU" tabindex="-1" aria-labelledby="modalPSULabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title fw-bold" id="modalPSULabel"><i class="bi bi-cpu me-2 text-success"></i> Public Sector Undertakings & Technical Research</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <h6 class="fw-bold text-navy">1. Gate Score vs Independent CBT</h6>
+        <p class="small text-muted">
+          - <strong>GATE Route:</strong> Major Maharatnas (IOCL, NTPC, ONGC, PowerGrid, BHEL) shortlist based on GATE percentile followed by GD/Interview.<br>
+          - <strong>Independent Recruitment Exams:</strong> ISRO (ICRB), DRDO (RAC), NIELIT, NIC (Scientist B), BEL, and CDAC conduct independent all-India CBT exams focusing on core engineering fundamentals.
+        </p>
+        <h6 class="fw-bold text-navy mt-3">2. Computer Science & IT Specialization</h6>
+        <p class="small text-muted">
+          NIC Scientist B and IBPS SO IT Officer test Data Structures, Algorithms, Compiler Design, Database Management Systems, Computer Networks, and Cybersecurity.
+        </p>
+        <div class="alert alert-secondary small mb-0">
+          <strong>Official Portal:</strong> <a href="https://gate2025.iitr.ac.in" target="_blank" rel="noopener noreferrer">gate2025.iitr.ac.in</a> and <a href="https://www.calicut.nielit.in/nic23/" target="_blank" rel="noopener noreferrer">nielit.in</a>.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ url_for('chat') }}" class="btn btn-primary-custom btn-sm"><i class="bi bi-chat-dots me-1"></i> Ask AI About PSU Tech Roles</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Category quick filter
+  const searchInput = document.getElementById('categorySearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const items = document.querySelectorAll('.category-item');
+      items.forEach(item => {
+        const keywords = item.getAttribute('data-keywords') || '';
+        const title = item.querySelector('h4')?.textContent.toLowerCase() || '';
+        if (keywords.includes(query) || title.includes(query)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  }
+</script>
+{% endblock %}

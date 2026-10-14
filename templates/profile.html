@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}Profile & Settings – Government Job Guide AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+    <div>
+      <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill mb-1 fw-semibold">Settings</span>
+      <h2 class="fw-bold mb-0">Candidate Profile & Preferences</h2>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm">
+      <i class="bi bi-box-arrow-right me-1"></i> Sign Out
+    </a>
+  </div>
+
+  <div class="row g-4">
+    <!-- Left Column: Career Preferences & Display Name -->
+    <div class="col-lg-7">
+      <div class="card card-custom p-4 p-md-5 shadow-sm">
+        <h4 class="fw-bold text-navy mb-4"><i class="bi bi-person-gear text-primary me-2"></i>Career Profile</h4>
+
+        <form id="profileForm">
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="profileName" value="{{ user.name }}" required minlength="2">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email Address (Registered)</label>
+            <input type="email" class="form-control bg-light" value="{{ user.email }}" readonly>
+            <small class="text-muted">Email cannot be changed.</small>
+          </div>
+
+          <hr class="my-4">
+          <h5 class="fw-bold text-navy mb-3"><i class="bi bi-sliders text-info me-2"></i>Eligibility Defaults</h5>
+
+          <div class="mb-3">
+            <label class="form-label">Highest Qualification</label>
+            <select class="form-select" id="prefQualification">
+              <option value="" disabled {% if not profile or not profile.qualification %}selected{% endif %}>Select Qualification</option>
+              <option value="10th Pass (Matriculation)" {% if profile and profile.qualification == '10th Pass (Matriculation)' %}selected{% endif %}>10th Pass (Matriculation)</option>
+              <option value="12th Pass (Higher Secondary)" {% if profile and profile.qualification == '12th Pass (Higher Secondary)' %}selected{% endif %}>12th Pass (Higher Secondary - Any Stream)</option>
+              <option value="12th Pass (Science PCM)" {% if profile and profile.qualification == '12th Pass (Science PCM)' %}selected{% endif %}>12th Pass (Science PCM)</option>
+              <option value="ITI Certificate" {% if profile and profile.qualification == 'ITI Certificate' %}selected{% endif %}>ITI Trade Certificate</option>
+              <option value="Diploma / Polytechnic" {% if profile and profile.qualification == 'Diploma / Polytechnic' %}selected{% endif %}>Diploma / Polytechnic</option>
+              <option value="B.Tech / B.E. (Engineering)" {% if profile and profile.qualification == 'B.Tech / B.E. (Engineering)' %}selected{% endif %}>B.Tech / B.E. (Engineering)</option>
+              <option value="General Bachelor's Degree (BA/BSc/BCom)" {% if profile and profile.qualification == "General Bachelor's Degree (BA/BSc/BCom)" %}selected{% endif %}>General Bachelor's Degree (BA/BSc/BCom)</option>
+              <option value="Post Graduation / Master's" {% if profile and profile.qualification == "Post Graduation / Master's" %}selected{% endif %}>Post Graduation / Master's Degree</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Engineering / Specialization Branch</label>
+            <input type="text" class="form-control" id="prefBranch" value="{{ profile.branch if profile else '' }}" placeholder="e.g. Computer Science, Mechanical, Civil">
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <label class="form-label">Age (in years)</label>
+              <input type="number" class="form-control" id="prefAge" value="{{ profile.age if (profile and profile.age > 0) else 21 }}" min="16" max="45">
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Domicile State</label>
+              <select class="form-select" id="prefState">
+                <option value="All India" {% if not profile or not profile.state or profile.state == 'All India' %}selected{% endif %}>All India</option>
+                <option value="Maharashtra" {% if profile and profile.state == 'Maharashtra' %}selected{% endif %}>Maharashtra</option>
+                <option value="Delhi NCR" {% if profile and profile.state == 'Delhi NCR' %}selected{% endif %}>Delhi NCR</option>
+                <option value="Uttar Pradesh" {% if profile and profile.state == 'Uttar Pradesh' %}selected{% endif %}>Uttar Pradesh</option>
+                <option value="Bihar" {% if profile and profile.state == 'Bihar' %}selected{% endif %}>Bihar</option>
+                <option value="Karnataka" {% if profile and profile.state == 'Karnataka' %}selected{% endif %}>Karnataka</option>
+                <option value="Tamil Nadu" {% if profile and profile.state == 'Tamil Nadu' %}selected{% endif %}>Tamil Nadu</option>
+                <option value="Rajasthan" {% if profile and profile.state == 'Rajasthan' %}selected{% endif %}>Rajasthan</option>
+                <option value="Madhya Pradesh" {% if profile and profile.state == 'Madhya Pradesh' %}selected{% endif %}>Madhya Pradesh</option>
+                <option value="West Bengal" {% if profile and profile.state == 'West Bengal' %}selected{% endif %}>West Bengal</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Preferred Career Department</label>
+            <select class="form-select" id="prefDepartment">
+              <option value="Any" {% if not profile or not profile.preferred_dept or profile.preferred_dept == 'Any' %}selected{% endif %}>Any Department</option>
+              <option value="Central Administrative (SSC/UPSC)" {% if profile and profile.preferred_dept == 'Central Administrative (SSC/UPSC)' %}selected{% endif %}>Central Administrative (SSC/UPSC)</option>
+              <option value="Banking & Finance" {% if profile and profile.preferred_dept == 'Banking & Finance' %}selected{% endif %}>Banking & Finance (IBPS/SBI)</option>
+              <option value="Technical PSUs & R&D" {% if profile and profile.preferred_dept == 'Technical PSUs & R&D' %}selected{% endif %}>Technical PSUs & R&D (ISRO, DRDO, NIC)</option>
+              <option value="Indian Railways" {% if profile and profile.preferred_dept == 'Indian Railways' %}selected{% endif %}>Indian Railways</option>
+              <option value="Defence & Police" {% if profile and profile.preferred_dept == 'Defence & Police' %}selected{% endif %}>Defence & Police</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary-custom" id="btnSaveProfile">
+            <i class="bi bi-save me-1"></i> Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column: Change Password -->
+    <div class="col-lg-5">
+      <div class="card card-custom p-4 p-md-5 shadow-sm">
+        <h4 class="fw-bold text-navy mb-4"><i class="bi bi-key text-warning me-2"></i>Security & Password</h4>
+
+        <form id="passwordForm">
+          <div class="mb-3">
+            <label class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="currentPassword" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" id="newPassword" required minlength="6">
+            <small class="text-muted">Must be at least 6 characters.</small>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirmNewPassword" required>
+          </div>
+
+          <button type="submit" class="btn btn-outline-primary w-100" id="btnChangePassword">
+            <i class="bi bi-shield-check me-1"></i> Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Save Profile Form
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+      profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btnSaveProfile');
+        btn.disabled = true;
+
+        try {
+          const res = await fetch('/api/profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: document.getElementById('profileName').value.trim(),
+              qualification: document.getElementById('prefQualification').value,
+              branch: document.getElementById('prefBranch').value.trim(),
+              age: parseInt(document.getElementById('prefAge').value || '21', 10),
+              state: document.getElementById('prefState').value,
+              preferred_dept: document.getElementById('prefDepartment').value
+            })
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast('Profile and preferences updated successfully!', 'success');
+          } else {
+            showToast(data.error || 'Failed to update profile.', 'danger');
+          }
+        } catch (err) {
+          console.error(err);
+          showToast('Network error while saving profile.', 'danger');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    }
+
+    // Change Password Form
+    const passwordForm = document.getElementById('passwordForm');
+    if (passwordForm) {
+      passwordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        if (newPassword !== confirmNewPassword) {
+          showToast('New passwords do not match.', 'danger');
+          return;
+        }
+
+        const btn = document.getElementById('btnChangePassword');
+        btn.disabled = true;
+
+        try {
+          const res = await fetch('/api/change-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              current_password: currentPassword,
+              new_password: newPassword,
+              confirm_password: confirmNewPassword
+            })
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast('Password changed successfully!', 'success');
+            passwordForm.reset();
+          } else {
+            showToast(data.error || 'Failed to change password.', 'danger');
+          }
+        } catch (err) {
+          console.error(err);
+          showToast('Network error while updating password.', 'danger');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

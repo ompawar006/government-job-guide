@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+
+{% block title %}Preparation Resources – Government Job Guide{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="text-center max-w-700 mx-auto mb-5">
+    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-2 fw-semibold">
+      Study Hub & Syllabus
+    </span>
+    <h1 class="fw-bold">Comprehensive Preparation Blueprint</h1>
+    <p class="text-muted">
+      Master the core subjects tested in 90% of Indian government competitive exams. Free genuine study resources, standard book recommendations, and topic breakdowns.
+    </p>
+  </div>
+
+  <!-- Nav Tabs for Subjects -->
+  <ul class="nav nav-pills justify-content-center mb-4 gap-2 flex-wrap" id="prepTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active px-4 py-2" id="quant-tab" data-bs-toggle="pill" data-bs-target="#quant" type="button" role="tab">
+        <i class="bi bi-calculator me-1"></i> Quantitative Aptitude
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="reasoning-tab" data-bs-toggle="pill" data-bs-target="#reasoning" type="button" role="tab">
+        <i class="bi bi-puzzle me-1"></i> Reasoning Ability
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="english-tab" data-bs-toggle="pill" data-bs-target="#english" type="button" role="tab">
+        <i class="bi bi-translate me-1"></i> English Language
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="gk-tab" data-bs-toggle="pill" data-bs-target="#gk" type="button" role="tab">
+        <i class="bi bi-globe-americas me-1"></i> General Knowledge
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="ca-tab" data-bs-toggle="pill" data-bs-target="#ca" type="button" role="tab">
+        <i class="bi bi-newspaper me-1"></i> Current Affairs
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="tech-tab" data-bs-toggle="pill" data-bs-target="#tech" type="button" role="tab">
+        <i class="bi bi-cpu me-1"></i> Technical Subjects
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link px-4 py-2" id="interview-tab" data-bs-toggle="pill" data-bs-target="#interview" type="button" role="tab">
+        <i class="bi bi-people me-1"></i> Interview & SSB
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content" id="prepTabsContent">
+
+    <!-- 1. Quantitative Aptitude -->
+    <div class="tab-pane fade show active" id="quant" role="tabpanel">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card card-custom p-4">
+            <h4 class="fw-bold text-navy mb-3">Quantitative Aptitude Strategy</h4>
+            <p class="text-muted">
+              Quantitative Aptitude evaluates numerical ability, mathematical comprehension, and calculation speed. Almost every exam (SSC, Banking, RRB, UPSC CSAT) tests this section.
+            </p>
+            <h6 class="fw-bold mt-3">Essential Syllabus Topics:</h6>
+            <div class="row g-2 small text-muted mb-4">
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Percentage, Ratio & Proportion</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Profit, Loss & Discount</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Time, Speed, Distance & Trains</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Time & Work, Pipes & Cisterns</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Simple & Compound Interest</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Geometry & Mensuration (SSC)</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Algebra & Quadratic Equations</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Data Interpretation (Pie/Bar/Tables)</div>
+            </div>
+
+            <div class="p-3 bg-light rounded">
+              <h6 class="fw-bold mb-1"><i class="bi bi-trophy text-warning me-2"></i>Preparation Rule</h6>
+              <p class="small text-muted mb-0">
+                Memorize multiplication tables up to 30, squares up to 50, cubes up to 30, and fractional percentages (e.g., 1/7 = 14.28%) to solve questions in 30 seconds.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card card-custom p-4">
+            <h5 class="fw-bold text-navy mb-3">Recommended Books</h5>
+            <ul class="list-unstyled small d-flex flex-column gap-3 text-muted">
+              <li>
+                <strong>Quantitative Aptitude for Competitive Exams</strong><br>
+                <em>Author: Dr. R.S. Aggarwal</em><br>
+                <span class="text-secondary">Best comprehensive beginner foundation.</span>
+              </li>
+              <li>
+                <strong>Fast Track Objective Arithmetic</strong><br>
+                <em>Author: Rajesh Verma (Arihant)</em><br>
+                <span class="text-secondary">Shortcuts and speed techniques.</span>
+              </li>
+              <li>
+                <strong>Play with Advanced Maths (SSC)</strong><br>
+                <em>Author: Abhinay Sharma</em><br>
+                <span class="text-secondary">Crucial for SSC CGL Advanced Math.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Reasoning Ability -->
+    <div class="tab-pane fade" id="reasoning" role="tabpanel">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card card-custom p-4">
+            <h4 class="fw-bold text-navy mb-3">Reasoning Ability & General Intelligence</h4>
+            <p class="text-muted">
+              Divided into Verbal Reasoning (logic, series, coding) and Non-Verbal Reasoning (patterns, paper folding, mirror images).
+            </p>
+            <h6 class="fw-bold mt-3">High-Scoring Topics:</h6>
+            <div class="row g-2 small text-muted mb-4">
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Syllogisms (Venn diagrams)</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Coding-Decoding & Letter Series</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Blood Relations & Direction Sense</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Seating Arrangement & Floor Puzzles</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Order, Ranking & Inequality</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Statement & Assumptions / Arguments</div>
+            </div>
+            <div class="alert alert-info small mb-0">
+              <strong>Banking vs SSC Difference:</strong> Banking exams focus heavily on complex time-consuming Puzzles and Seating Arrangements, whereas SSC and Railways emphasize quick analogies, series, and non-verbal patterns.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card card-custom p-4">
+            <h5 class="fw-bold text-navy mb-3">Recommended Books</h5>
+            <ul class="list-unstyled small d-flex flex-column gap-3 text-muted">
+              <li>
+                <strong>A Modern Approach to Verbal & Non-Verbal Reasoning</strong><br>
+                <em>Author: Dr. R.S. Aggarwal</em>
+              </li>
+              <li>
+                <strong>Analytical Reasoning</strong><br>
+                <em>Author: M.K. Pandey</em><br>
+                <span class="text-secondary">Best for Critical Reasoning & Assumptions.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. English Language -->
+    <div class="tab-pane fade" id="english" role="tabpanel">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card card-custom p-4">
+            <h4 class="fw-bold text-navy mb-3">English Language & Comprehension</h4>
+            <p class="text-muted">
+              Tests candidate's reading ability, grammatical precision, and vocabulary depth across error spotting, cloze tests, and reading passages.
+            </p>
+            <h6 class="fw-bold mt-3">Core Pillars:</h6>
+            <div class="row g-2 small text-muted mb-4">
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Grammar Rules (Subject-Verb Agreement, Tenses, Prepositions)</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Reading Comprehension Passages</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Synonyms, Antonyms & One-Word Substitutions</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Idioms & Phrasal Verbs</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Para Jumbles (Sentence Rearrangement)</div>
+              <div class="col-sm-6"><i class="bi bi-check-circle text-primary me-2"></i>Active & Passive Voice, Direct & Indirect Speech</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card card-custom p-4">
+            <h5 class="fw-bold text-navy mb-3">Recommended Resources</h5>
+            <ul class="list-unstyled small d-flex flex-column gap-3 text-muted">
+              <li>
+                <strong>Word Power Made Easy</strong><br>
+                <em>Author: Norman Lewis</em><br>
+                <span class="text-secondary">The gold standard for vocabulary building.</span>
+              </li>
+              <li>
+                <strong>High School English Grammar & Composition</strong><br>
+                <em>Authors: Wren & Martin</em>
+              </li>
+              <li>
+                <strong>Plinth to Paramount / English for General Competitions</strong><br>
+                <em>Author: Neetu Singh (KD Campus)</em>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. General Knowledge -->
+    <div class="tab-pane fade" id="gk" role="tabpanel">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card card-custom p-4">
+            <h4 class="fw-bold text-navy mb-3">General Studies & Static GK</h4>
+            <p class="text-muted">
+              Encompasses Indian Polity, History, Geography, Economics, and General Science (Physics, Chemistry, Biology up to 10th standard).
+            </p>
+            <h6 class="fw-bold mt-3">Free Official Source Textbooks:</h6>
+            <p class="small text-muted">
+              NCERT textbooks from Class 6 to 12 form the universal baseline for UPSC Civil Services, State PSC, and SSC exams. You can download official NCERT textbooks free from the government portal:
+            </p>
+            <div class="p-3 bg-light rounded d-flex align-items-center justify-content-between mb-4">
+              <div>
+                <strong>Official NCERT Digital Portal</strong>
+                <div class="text-muted small">Free downloadable PDF textbooks for History, Polity, Geography</div>
+              </div>
+              <a href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                Visit ncert.nic.in <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card card-custom p-4">
+            <h5 class="fw-bold text-navy mb-3">Recommended Books</h5>
+            <ul class="list-unstyled small d-flex flex-column gap-3 text-muted">
+              <li>
+                <strong>Indian Polity</strong><br>
+                <em>Author: M. Laxmikanth</em><br>
+                <span class="text-secondary">The indispensable guide for Indian Constitution & Polity.</span>
+              </li>
+              <li>
+                <strong>General Knowledge (Static)</strong><br>
+                <em>Publisher: Lucent Publications</em><br>
+                <span class="text-secondary">Standard reference for SSC, Railway, and State exams.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Current Affairs -->
+    <div class="tab-pane fade" id="ca" role="tabpanel">
+      <div class="card card-custom p-4">
+        <h4 class="fw-bold text-navy mb-3">Current Affairs Strategy (Last 6–12 Months)</h4>
+        <p class="text-muted">
+          Current events carry heavy weightage in UPSC, SSC, Banking, and State PSC examinations. Focus on government schemes, international summits, RBI monetary policy changes, science and defence advancements, sports awards, and national appointments.
+        </p>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="p-3 border rounded bg-light">
+              <h6 class="fw-bold text-primary mb-1">Newspaper Habit</h6>
+              <p class="small text-muted mb-0">Read editorial and national pages of <em>The Hindu</em> or <em>The Indian Express</em> daily for deep context.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded bg-light">
+              <h6 class="fw-bold text-primary mb-1">Monthly Compilations</h6>
+              <p class="small text-muted mb-0">Revise monthly PDF digests (e.g. Yojana, Kurukshetra, or PIB releases) for rapid factual retention.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded bg-light">
+              <h6 class="fw-bold text-primary mb-1">Government Portals</h6>
+              <p class="small text-muted mb-0">Refer to <a href="https://pib.gov.in" target="_blank" rel="noopener noreferrer">pib.gov.in</a> for direct government policy press releases.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Technical Subjects -->
+    <div class="tab-pane fade" id="tech" role="tabpanel">
+      <div class="card card-custom p-4">
+        <h4 class="fw-bold text-navy mb-3">Technical Subjects for Engineering & IT Candidates</h4>
+        <p class="text-muted">
+          Preparation guidelines for technical examinations (NIC Scientist B, IBPS SO IT, GATE PSUs, SSC JE, RRB JE).
+        </p>
+        <div class="row g-4 mt-1">
+          <div class="col-md-6">
+            <div class="p-3 border rounded h-100">
+              <h6 class="fw-bold text-primary mb-2"><i class="bi bi-laptop me-2"></i>Computer Science & IT (NIC / IBPS SO / ISRO)</h6>
+              <ul class="small text-muted ps-3 mb-0">
+                <li><strong>Data Structures & Algorithms:</strong> Cormen (CLRS) or standard university notes</li>
+                <li><strong>Operating Systems:</strong> Galvin (Processes, Threads, Deadlocks, Paging)</li>
+                <li><strong>Database Management (DBMS):</strong> Korth or Navathe (SQL, Normalization, ACID)</li>
+                <li><strong>Computer Networks:</strong> Tanenbaum / Kurose & Ross (TCP/IP, Routing, DNS)</li>
+                <li><strong>Cybersecurity Basics:</strong> Cryptography, firewalls, and network security</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 border rounded h-100">
+              <h6 class="fw-bold text-primary mb-2"><i class="bi bi-gear me-2"></i>Core Engineering (Civil, Mechanical, Electrical)</h6>
+              <ul class="small text-muted ps-3 mb-0">
+                <li><strong>Civil:</strong> Building Materials, Soil Mechanics, Structural Analysis, Fluid Mechanics</li>
+                <li><strong>Mechanical:</strong> Thermodynamics, Fluid Machinery, Strength of Materials, Theory of Machines</li>
+                <li><strong>Electrical:</strong> Power Systems, Electrical Machines, Control Systems, Network Theory</li>
+                <li><strong>Primary Exam Source:</strong> Previous 15 years GATE & ESE objective question papers.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Interview & SSB -->
+    <div class="tab-pane fade" id="interview" role="tabpanel">
+      <div class="card card-custom p-4">
+        <h4 class="fw-bold text-navy mb-3">Interview & Personality Test Guidance</h4>
+        <p class="text-muted">
+          The interview stage does not re-test your textbook knowledge; it evaluates your character, poise, communication clarity, ethics, and psychological stability.
+        </p>
+        <div class="row g-3 mt-2">
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded">
+              <h6 class="fw-bold mb-2"><i class="bi bi-person-video3 me-2 text-primary"></i>Civil Services & Banking PO Interviews</h6>
+              <p class="small text-muted mb-2">
+                - Know every word on your Detailed Application Form (DAF) or bio-data (home district, hobbies, graduation subjects).<br>
+                - Frame balanced viewpoints on controversial policy matters without taking extreme ideological stances.<br>
+                - When you do not know a factual answer, politely state: <em>"I do not know the exact details at the moment, sir/ma'am, but I will look into it."</em>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded">
+              <h6 class="fw-bold mb-2"><i class="bi bi-shield-shaded me-2 text-primary"></i>5-Day SSB (Services Selection Board)</h6>
+              <p class="small text-muted mb-2">
+                - Assesses 15 Officer Like Qualities (OLQ) across Effective Intelligence, Social Adaptability, Cooperation, and Stamina.<br>
+                - Maintain natural authenticity during Psychological tests (TAT/WAT/SRT); do not try to give pre-coached artificial answers.<br>
+                - During Group Discussions and Ground Obstacles (GTO), contribute constructively to team success rather than attempting to dominate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
